@@ -155,6 +155,12 @@
 }
 
 .features__item {
+  @media (max-width: @mobile-width-only) {
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+  }
+
   @media (min-width: @tablet-width) {
     min-height: 280px;
   }
