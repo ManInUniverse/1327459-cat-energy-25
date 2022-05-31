@@ -50,30 +50,6 @@
     }
   }
 
-  &--current {
-    position: relative;
-
-    @media (min-width: @tablet-width) {
-      .main-nav__link:hover {
-        opacity: 1;
-      }
-    }
-  }
-
-  &--current::before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background-color: @basic-color;
-
-    @media (max-width: @mobile-width-only) {
-      display: none;
-    }
-  }
-
   @media (min-width: @tablet-width) {
     width: auto;
     font-weight: 400;
@@ -92,12 +68,35 @@
   }
 }
 
+.main-nav__item--current {
+  .main-nav__link {
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
+
+    span::before {
+      content: "";
+      position: absolute;
+      bottom: -9px;
+      left: 0;
+      height: 2px;
+      background-color: @basic-color;
+      width: 100%;
+    }
+  }
+}
+
 .main-nav__link {
   display: block;
   color: @black;
   text-decoration: none;
   padding: 22px @padding-mobile;
   text-align: center;
+
+  span {
+    position: relative;
+  }
 
   @media (min-width: @tablet-width) {
     padding: 8px 0;
@@ -224,12 +223,12 @@
 // Модификатор для контрастного цвета навигации на главной в десктопном разрешении
 .main-nav__list--home-page {
   @media (min-width: @desktop-width) {
-    .main-nav__item--current::before {
-      background-color: @white;
-    }
-
     .main-nav__link {
       color: @white;
+
+      span::before {
+        background-color: @white;
+      }
     }
   }
 }
